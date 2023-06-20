@@ -45,8 +45,10 @@ import com.hedera.hashgraph.sdk.proto.TokenFreezeStatus;
 import com.hedera.mirror.test.e2e.acceptance.props.ExpandedAccountId;
 import com.hedera.mirror.test.e2e.acceptance.response.NetworkTransactionResponse;
 import jakarta.inject.Named;
+
 import java.time.Duration;
 import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.retry.support.RetryTemplate;
 
@@ -63,7 +65,7 @@ public class TokenClient extends AbstractNetworkClient {
             int freezeStatus,
             int kycStatus,
             ExpandedAccountId treasuryAccount,
-            int initialSupply,
+            long initialSupply,
             TokenSupplyType tokenSupplyType,
             long maxSupply,
             TokenType tokenType,
@@ -150,20 +152,20 @@ public class TokenClient extends AbstractNetworkClient {
             int freezeStatus,
             int kycStatus,
             ExpandedAccountId treasuryAccount,
-            int initialSupply,
+            long initialSupply,
             TokenSupplyType tokenSupplyType,
             long maxSupply,
             List<CustomFee> customFees) {
         TokenCreateTransaction tokenCreateTransaction = getTokenCreateTransaction(
-                        expandedAccountId,
-                        symbol,
-                        freezeStatus,
-                        kycStatus,
-                        treasuryAccount,
-                        TokenType.FUNGIBLE_COMMON,
-                        tokenSupplyType,
-                        maxSupply,
-                        customFees)
+                expandedAccountId,
+                symbol,
+                freezeStatus,
+                kycStatus,
+                treasuryAccount,
+                TokenType.FUNGIBLE_COMMON,
+                tokenSupplyType,
+                maxSupply,
+                customFees)
                 .setDecimals(10)
                 .setInitialSupply(initialSupply);
 
